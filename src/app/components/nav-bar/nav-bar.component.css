@@ -1,0 +1,29 @@
+.navBar {
+    width: 100%;
+    height: 50px;
+    background: #B3B3B3;
+    margin-bottom: 50px;
+    box-shadow: 0 0 5px black;
+}
+.navBar_list{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.navBar_element{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.navBar_flag {
+    height: 100%;
+    text-decoration: none;
+}

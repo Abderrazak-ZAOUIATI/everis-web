@@ -16,7 +16,7 @@ const httpOptions = {
 
 export class UserService {
 
-  userUrl:string = '';
+  userUrl:string = 'http://localhost:8080/api/users';
 
   constructor(private http:HttpClient) { }
 
