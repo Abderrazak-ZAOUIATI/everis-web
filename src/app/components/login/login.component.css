@@ -1,0 +1,61 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .example-container {
+    width: 250px;
+    box-shadow: 0 2px 1px -1px #aaa, 0 1px 1px 0 #ccc, 0 1px 3px 0 #aaa;
+    padding-bottom: 10px;
+    padding-left: 34px;
+    padding-right: 34px;
+    background-color: white;
+ 
+  }
+
+  .container-div{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 130px;
+      border-radius: 6px;
+  }
+
+  .loginbutton{
+      margin-top: 10px;
+      width: 100px!important;
+      background-color: #673BB7;
+      color: white;
+    
+  }
+  .buttonWithSpinner{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mat-spinner-color::ng-deep circle{
+    stroke: #FFFFFF !important;
+    }
+  .signuplinklogin{
+    font-size: 14px;
+    padding-top: 10px;
+  }
+
+  .logintitle{
+    text-align: center;
+  }
+
+  .alert-error{
+    background-color:#F8D7DA;
+    padding-left: 12px;
+    padding-top: 12px;
+    margin-bottom: 21px;
+    padding-bottom: 12px;
+    color:#721C24;
+}

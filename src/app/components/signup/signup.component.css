@@ -1,0 +1,39 @@
+.container-signup-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 130px;
+    border-radius: 6px;
+}
+
+.signuptitle{
+    text-align: center;
+}
+
+.signup-container {
+    background-color: white;
+    box-shadow: 0 2px 1px -1px #aaa, 0 1px 1px 0 #ccc, 0 1px 3px 0 #aaa;
+    padding-bottom: 10px;
+    padding-left: 34px;
+    padding-right: 34px;
+ 
+  }
+
+.alert-error{
+      background-color:#F8D7DA;
+      padding: 12px;
+      color:#721C24;
+}
+
+.codeverificationemail{
+ padding-bottom: 55px;
+line-height: 44px;
+font-size: 14px;
+}
+
+.buttonWithSpinner{
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: center;
+}

@@ -18,7 +18,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { UsersComponent } from './components/users/users.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-
+import { ConfirmAccountComponent } from './components/confirm-account/confirm-account.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,13 +32,19 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     AdminComponent,
     HomeComponent,
     UsersComponent,
-    NavBarComponent
+    NavBarComponent,
+    ConfirmAccountComponent,
+    LogoutComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
     RouterModule.forRoot([{
       path: '',
       component: HomeComponent

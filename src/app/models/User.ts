@@ -7,4 +7,5 @@ export class User {
 	phoneNumber:string;
 	address:string;
 	type:string;
+	compteStatus:string;
 }

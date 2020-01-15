@@ -2,9 +2,11 @@
     <div class="navBar">
       <ul class="navBar_list">
         <a routerLink="" class="navBar_flag"><li class="navBar_element">Home</li></a>
-        <a routerLink="/login" class="navBar_flag"><li class="navBar_element">Login</li></a>
         <a routerLink="/admin" class="navBar_flag"><li class="navBar_element">Admin</li></a>
         <a routerLink="/users" class="navBar_flag"><li class="navBar_element">Users</li></a>
+        <a *ngIf="!authentificationService.isUserLoggedIn()"  routerLink="/login" class="navBar_flag"><li class="navBar_element">Login</li></a>
+        <a *ngIf="authentificationService.isUserLoggedIn()" routerLink="/logout" class="navBar_flag"><li class="navBar_element">Logout</li></a>
+        <a *ngIf="!authentificationService.isUserLoggedIn()"  routerLink="/signup" class="navBar_flag"><li class="navBar_element">Signup</li></a>
       </ul>
     </div>
-  </div>  
+</div>  

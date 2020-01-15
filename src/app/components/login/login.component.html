@@ -1,13 +1,33 @@
-<form #userForm="ngForm" (submit)="loginUser(userForm.value)">
+<div>
   <app-nav-bar></app-nav-bar>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="UserName" name="username" ngModel>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Enter your password" [type]="hide ? 'text' : 'password' "  name="password" ngModel>
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-    <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </button>
-  </mat-form-field>
-  <input type="submit" value="Submit">
-</form>
+</div>
+
+<div class="container-div"> 
+
+  <div class="example-container">
+      <h4 class="logintitle">Login</h4>
+      <div *ngIf="loginErrorinfo" class="alert-error">Wrong email or password</div>
+      
+      
+    <form [formGroup]="userloginFormGroup" (submit)='userLogin()' ngNativeValidate>
+      <mat-form-field style="width: 100%;">
+        <input [(ngModel)]="email" matInput type="email" placeholder="Email" formControlName="emailCtrl" required>
+      </mat-form-field>
+    
+      <mat-form-field style="width: 100%;">
+          <input [(ngModel)]="password" matInput type="password" minlength="8" matInput placeholder="Password" formControlName="passwordCtrl" required>
+      </mat-form-field>
+   
+      <button [disabled]="showSpinner" [ngClass]="{'buttonWithSpinner': showSpinner}" type="submit" class="loginbutton" mat-raised-button>
+      <span *ngIf="!showSpinner">Login</span>     
+
+      <mat-progress-spinner *ngIf="showSpinner" diameter="20" 
+      mode="indeterminate" class="mat-spinner-color" value="100"></mat-progress-spinner>
+    
+      </button>
+      <p class="signuplinklogin">Don't have an Account? <a  routerLink="/signup">Sign up</a></p>
+    </form>
+     </div>
+      
+  
+    </div>

@@ -1,0 +1,24 @@
+
+<div>
+  <app-nav-bar></app-nav-bar>
+</div>
+
+
+<div class="container-div-Verification"> 
+    <div class="example-container">
+        <h4 class="verificationtitle">Confirm your account</h4>
+        <div class="confirmAccountMessageDiv">
+        
+         <div *ngIf="verificationCodeError" class="alert-error">{{createAccountErrorMessage}}</div>
+         <br/>
+         
+        Please enter the code send to your email<br/>
+        <span class="codeverificationemail">{{email}}</span>
+        </div>
+        <br>
+        <mat-form-field style="width: 100%;">
+          <input [(ngModel)]="verificationCode" matInput placeholder="verification code">
+        </mat-form-field>
+        <button class="verificationbutton" (click)="accountVerification()" mat-raised-button>Confirm</button>
+    </div>
+</div>
