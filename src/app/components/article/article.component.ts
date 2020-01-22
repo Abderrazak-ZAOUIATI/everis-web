@@ -39,7 +39,7 @@ public doFilter = (value: string) => {
 }
 
 
-public createArticle(){
+public createArticle(){ 
 
 console.log(this.content);
 }
