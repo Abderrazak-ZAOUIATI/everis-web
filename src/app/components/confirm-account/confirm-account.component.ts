@@ -29,8 +29,7 @@ export class ConfirmAccountComponent implements OnInit {
   }
 
   accountVerification(){
-    console.log("id "+this.userId);
-
+    
   this.authentificationService.accountVerification(this.verificationCode,this.userId).subscribe(response=>{
     console.log(response[0]);
     if(response[0] == "OK"){

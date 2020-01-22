@@ -24,7 +24,11 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
- 
+import { ArticleComponent } from './components/article/article.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NavBarComponent,
     ConfirmAccountComponent,
     LogoutComponent,
-    SignupComponent
+    SignupComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatStepperModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatTabsModule,
     RouterModule.forRoot([{
       path: '',
       component: HomeComponent

@@ -8,9 +8,17 @@ import { AuthentificationService } from '../../services/authentification/authent
 })
 export class NavBarComponent implements OnInit {
 
+  userRole:string;
+
   constructor(private authentificationService:AuthentificationService ){
   }
   ngOnInit() {
+
+    if(sessionStorage.getItem('role') != null)
+    this.userRole = sessionStorage.getItem('role');
+    else
+    this.userRole = "Candidate";
+
   }
 
 }

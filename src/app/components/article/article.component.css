@@ -1,0 +1,83 @@
+table {
+    width: 100%;
+  }
+  td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type {
+    padding-right: 0px;
+  }
+  
+  .mat-icon {
+    font-size: 20px;
+  }
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: center;*/
+    justify-content: space-around;
+  /*  justify-content: flex-start;*/
+  }
+  
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  } 
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .example-full-width-update-customer {
+    width: 80%;
+  }
+  
+  .flex-container > div {
+   padding-top: 20px;
+  }
+  
+  
+  .modal-dialog {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 0%;
+  }
+  .modal-content{
+    border-radius: 0%;
+  
+  }
+  .modal-content {
+    margin: 0 auto;
+  }
+  .modal-header,.modal-footer{
+    border:none;
+  
+  }
+  .mat-menu-item {
+    height: 40px;
+  }
+  
+  .filterCustomers{
+    float: right;
+    margin-right: 10px;
+  }
+  .container, .container-md, .container-sm {
+    max-width: 99%;
+  }
+  
+  .mat-card:not([class*=mat-elevation-z]) {
+    box-shadow:none;
+  }
+
+  .show-articles{
+display: flex;
+justify-content: center;
+width: 100%;
+
+  }
+
+  .show-articles-div{
+    width:75%;
+  }

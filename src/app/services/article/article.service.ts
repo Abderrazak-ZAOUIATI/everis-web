@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { Article } from '../../models/Article';
 
 const httpOptions = {
@@ -15,19 +14,18 @@ const httpOptions = {
 })
 export class ArticleService {
 
-    articleUrl:string = '';
-  
+    articleUrl:string = 'http://localhost:8080/api/articles';
   
     constructor(private http:HttpClient) { }
   
-    getAllOffer():Observable<Article[]> {
+    getAllArticles():Observable<Article[]> {
       return this.http.get<Article[]>(this.articleUrl);
     }
   
     getArticleById(id:number):Observable<Article> {
       return this.http.get<Article>(this.articleUrl + '/' + id);
     }
-  
+    
     createArticle(article:Article):Observable<Article> {
       return this.http.post<Article>(this.articleUrl, article, httpOptions);
     }

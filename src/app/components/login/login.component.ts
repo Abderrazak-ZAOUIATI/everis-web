@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
       {
         if(user.compteStatus == "Activated"){
         sessionStorage.setItem('user', user.lastName+" "+user.firstName);
+        sessionStorage.setItem('role', user.type);
+
         this.router.navigate(['']);
         this.invalidLogin = false
         
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
         else{
           this.router.navigate(['account-confirm', { id: user.id , email: user.email  }],{skipLocationChange: true, replaceUrl: false});
           this.invalidLogin = true
+          sessionStorage.setItem('role', user.type);
         }
       }
       else{

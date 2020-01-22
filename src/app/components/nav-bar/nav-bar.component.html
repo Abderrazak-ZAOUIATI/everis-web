@@ -2,11 +2,19 @@
     <div class="navBar">
       <ul class="navBar_list">
         <a routerLink="" class="navBar_flag"><li class="navBar_element">Home</li></a>
-        <a routerLink="/admin" class="navBar_flag"><li class="navBar_element">Admin</li></a>
-        <a routerLink="/users" class="navBar_flag"><li class="navBar_element">Users</li></a>
+        <a routerLink="/careers" class="navBar_flag"><li class="navBar_element">Careers</li></a>
+        <a *ngIf="authentificationService.isUserLoggedIn() && userRole === 'Admin'" routerLink="/articles" class="navBar_flag"><li class="navBar_element">Articles</li></a>
+        <a *ngIf="authentificationService.isUserLoggedIn() && userRole === 'Admin'" routerLink="/offers" class="navBar_flag"><li class="navBar_element">Offers</li></a>
+
+        <a routerLink="/contacts" class="navBar_flag"><li class="navBar_element">Contacts</li></a>
+        <a *ngIf="authentificationService.isUserLoggedIn() && userRole === 'Admin'" routerLink="/users" class="navBar_flag"><li class="navBar_element">Users</li></a>
+
+        <a *ngIf="authentificationService.isUserLoggedIn() && userRole === 'Candidate'" routerLink="/my-appilications" class="navBar_flag"><li class="navBar_element">My applications</li></a>
+
+        <a *ngIf="authentificationService.isUserLoggedIn()"  routerLink="/compte" class="navBar_flag"><li class="navBar_element">Compte</li></a>
         <a *ngIf="!authentificationService.isUserLoggedIn()"  routerLink="/login" class="navBar_flag"><li class="navBar_element">Login</li></a>
         <a *ngIf="authentificationService.isUserLoggedIn()" routerLink="/logout" class="navBar_flag"><li class="navBar_element">Logout</li></a>
         <a *ngIf="!authentificationService.isUserLoggedIn()"  routerLink="/signup" class="navBar_flag"><li class="navBar_element">Signup</li></a>
-      </ul>
+          </ul>
     </div>
 </div>  

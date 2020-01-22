@@ -93,13 +93,17 @@ export class SignupComponent implements OnInit {
       console.log(response[0]);
       if(response[0] == "OK"){
         sessionStorage.setItem('user', this.user.lastName+" "+this.user.firstName);
+        sessionStorage.setItem('role', "Candidate");
         this.router.navigate(['']);
-        
+        this.disabledButtonCreateAccount = false;
+
       }else{
         this.createAccountErrorMessage="The verification code is invalid";
         this.verificationCodeError = true;
+        this.disabledButtonCreateAccount = false;
+
       }
-      //this.disabledButtonCreateAccount = false;
+
     });
   }
 

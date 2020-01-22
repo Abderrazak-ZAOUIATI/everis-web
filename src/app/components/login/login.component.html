@@ -21,8 +21,7 @@
       <button [disabled]="showSpinner" [ngClass]="{'buttonWithSpinner': showSpinner}" type="submit" class="loginbutton" mat-raised-button>
       <span *ngIf="!showSpinner">Login</span>     
 
-      <mat-progress-spinner *ngIf="showSpinner" diameter="20" 
-      mode="indeterminate" class="mat-spinner-color" value="100"></mat-progress-spinner>
+      <mat-progress-spinner *ngIf="showSpinner" diameter="20" mode="indeterminate" class="mat-spinner-color" value="100"></mat-progress-spinner>
     
       </button>
       <p class="signuplinklogin">Don't have an Account? <a  routerLink="/signup">Sign up</a></p>

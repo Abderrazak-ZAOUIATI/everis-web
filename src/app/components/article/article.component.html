@@ -1,0 +1,110 @@
+<app-nav-bar></app-nav-bar>
+
+<mat-tab-group class="show-articles">
+
+<mat-tab label="Articles">
+
+<div class="show-articles">
+<div class="mat-elevation-z1 show-articles-div">
+  
+    <button style="margin: 14px" mat-raised-button color="primary"><i class="material-icons">add</i> &nbsp;Create</button>
+
+    <div class="filterCustomers" fxLayout fxLayoutAlign="center center">
+      <mat-form-field fxFlex="40%">
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+  <br/>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td style="cursor: pointer;" mat-cell *matCellDef="let article"> {{article.title}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="publication-date">
+      <th mat-header-cell *matHeaderCellDef> Publication Date </th>
+      <td style="cursor: pointer;" mat-cell *matCellDef="let article"> {{article.publicationDate}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="content">
+      <th mat-header-cell *matHeaderCellDef> Content </th>
+      <td style="cursor: pointer;" mat-cell *matCellDef="let article"> {{article.content}} </td>
+    </ng-container>
+  
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td style="cursor: pointer;" mat-cell *matCellDef="let article"> {{article.status}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="action-menu">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let article">
+        <mat-cell style="float: right;">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button routerLink="/articles/{{article.id}}" mat-menu-item>
+              <mat-icon>more</mat-icon>
+              
+              <span *ngIf="article.status == 'Active'">Inactive</span>
+              <span *ngIf="article.status == 'Inactive'">Active</span>
+
+            </button>
+            <button (click)="openDialog(article)" mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Update</span>
+            </button>
+         
+          </mat-menu>
+        </mat-cell>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  </table>
+  
+  <mat-card *ngIf="isLoading" style="display: flex;justify-content: center; align-items: center">
+  
+  <mat-progress-spinner diameter="20"  color="primary" 
+  mode="indeterminate" value="100"></mat-progress-spinner>
+  </mat-card>
+  
+  <mat-paginator [length]="100" [pageSize]="defaultRecords" [pageSizeOptions]="[5, 10, 25, 100]" >
+  </mat-paginator>
+  
+  </div>
+</div>
+
+</mat-tab>
+
+
+<mat-tab label="Add article">
+
+  <form  [formGroup]="createArticleFormGroup" (submit)='createArticle()' ngNativeValidate'>
+
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)] = "title" matInput placeholder="Title"/>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label for="file">Choose File</label>
+      <input type="file" id="file" (change)="handleFileInput($event.target.files)"/>
+    </div> 
+
+    <mat-form-field class="example-full-width">
+      <textarea [(ngModel)] = "content" matInput placeholder="Article content"></textarea>
+    </mat-form-field>
+
+    <div class="example-button-row">
+      <button mat-stroked-button>Create</button>
+    </div>
+
+  </form>
+  
+</mat-tab>
+
+
+</mat-tab-group>
