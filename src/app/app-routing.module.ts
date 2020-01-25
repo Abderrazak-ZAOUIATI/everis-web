@@ -5,12 +5,14 @@ import {LogoutComponent} from './components/logout/logout.component';
 import {SignupComponent} from './components/signup/signup.component';
 import {ConfirmAccountComponent} from './components/confirm-account/confirm-account.component';
 import {ArticleComponent} from './components/article/article.component';
+import {OffersComponent} from './components/offers/offers.component';
 
 const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'account-confirm',component:ConfirmAccountComponent},
   {path:'logout',component:LogoutComponent},
-  {path:'articles',component:ArticleComponent}
+  {path:'articles',component:ArticleComponent},
+  {path:'offers',component:OffersComponent}
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../../services/authentification/authentification.service';
 import { Router } from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private authentificationService:AuthentificationService, private router:Router,private formBuilder:FormBuilder) { }
 
   ngOnInit() {
-    this.userloginFormGroup = this.formBuilder.group({
+      this.userloginFormGroup = this.formBuilder.group({
       emailCtrl: ['', Validators.pattern("^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$")],
       passwordCtrl:['',Validators.required],
 

@@ -15,11 +15,11 @@ const httpOptions = {
 })
 export class ApplicationService {
 
-  applicationUrl:string = '';
+  applicationUrl:string = 'http://localhost:8080/api/applications';
 
   constructor(private http:HttpClient) { }
 
-  getAllApplication():Observable<Application[]> {
+  getAllApplications():Observable<Application[]> {
     return this.http.get<Application[]>(this.applicationUrl);
   }
 
@@ -35,7 +35,7 @@ export class ApplicationService {
     return this.http.put<Application>(this.applicationUrl, application, httpOptions);
   }
 
-  deleteApplication(application:Application):Observable<Application> {
-    return this.http.delete<Application>(this.applicationUrl + '/' + application.id, httpOptions);
+  deleteApplication(applicationId:number):Observable<Object> {
+    return this.http.delete<Object>(this.applicationUrl + '/' + applicationId, httpOptions);
   }
 }

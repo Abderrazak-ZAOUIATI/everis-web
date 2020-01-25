@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { Article } from '../../models/Article';
 
 const httpOptions = {
@@ -12,6 +13,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ArticleService {
 
     articleUrl:string = 'http://localhost:8080/api/articles';
@@ -34,7 +36,11 @@ export class ArticleService {
       return this.http.put<Article>(this.articleUrl, article, httpOptions);
     }
   
-    deleteArticle(article:Article):Observable<Article> {
-      return this.http.delete<Article>(this.articleUrl + '/' + article.id, httpOptions);
+    deleteArticle(articleId:number):Observable<Article> {
+      return this.http.delete<Article>(this.articleUrl + '/' + articleId, httpOptions);
+    }
+
+    changeArticleStatus(articleId:number):Observable<Article>{
+      return this.http.post<Article>(this.articleUrl+"/"+articleId+"/status",{articleId:articleId});
     }
 }

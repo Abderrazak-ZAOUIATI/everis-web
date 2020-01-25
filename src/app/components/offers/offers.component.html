@@ -1,0 +1,234 @@
+<app-nav-bar></app-nav-bar>
+
+
+<div style="justify-content: center;align-items: center;display: flex">
+<mat-tab-group (selectedTabChange)="tabChange($event)" [selectedIndex] = "selectedTabIndex" style="width: 75%;box-shadow: 0px 2px 2px #ddd;padding: 10px;">
+
+<mat-tab label="Offers">
+
+<div class="show-offers" style="padding-top: 10px;">
+<div style="padding: 10px;" class="mat-elevation-z1 show-articles-div">
+
+    <div fxLayout fxLayoutAlign="center center">
+      <mat-form-field class="filterDataTable" fxFlex="40%">
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div> 
+
+  <br/>
+  <table style="width: 100%;" mat-table [dataSource]="offersDataSource" class="mat-elevation-z1">
+   
+    <ng-container matColumnDef="id" style="display: none;">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let offer"> {{offer.id}} </td>
+    </ng-container>
+   
+    <ng-container  matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td (click) = "showOfferApplications(offer.id)" style="cursor: pointer;" mat-cell *matCellDef="let offer"> {{offer.title}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="offre-date">
+      <th mat-header-cell *matHeaderCellDef> Date of the offer</th>
+      <td (click) = "showOfferApplications(offer.id)" style="cursor: pointer;" mat-cell *matCellDef="let offer"> {{offer.publicationDate}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td (click) = "showOfferApplications(offer.id)" style="cursor: pointer;" mat-cell *matCellDef="let offer"> {{offer.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="number-of-application">
+        <th mat-header-cell *matHeaderCellDef>Number of applications </th>
+        <td (click) = "showOfferApplications(offer.id)" style="cursor: pointer;" mat-cell *matCellDef="let offer"> {{offer.numberOfApplications}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td (click) = "showOfferApplications(offer.id)" style="cursor: pointer;" mat-cell *matCellDef="let offer"> {{offer.status}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="action-menu">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let offer">
+        <mat-cell style="float: right;">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+           
+            <button (click)="changeOfferStatus(offer)" mat-menu-item>
+              <mat-icon>more</mat-icon>             
+              <span *ngIf="offer.status == 'Active'">Deactivate</span>
+              <span *ngIf="offer.status == 'Inactive'">Activate</span>
+            </button>
+
+            <button (click)="updateOffer(offer)" mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Update</span>
+            </button>
+         
+            <button (click)="deleteOffer(offer)" mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button>
+
+          </mat-menu>
+        </mat-cell>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  </table>
+  
+  <mat-card *ngIf="isLoading" style="display: flex;justify-content: center; align-items: center">
+  
+  <mat-progress-spinner diameter="20"  color="primary" 
+  mode="indeterminate" value="100"></mat-progress-spinner>
+  </mat-card>
+  
+  <mat-paginator [length]="100" [pageSize]="defaultRecords" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+  
+  </div>
+</div>
+
+</mat-tab>
+
+<mat-tab label="Create offer" >
+
+<div style="padding-top: 30px;padding-bottom: 10px;display: flex;justify-content: center;align-items: center;">
+  <form [formGroup]="createOfferFormGroup" (submit)="createOffer()" ngNativeValidate>
+  
+    <mat-form-field style="width: 100%;">
+      <input [(ngModel)]="offer.title" matInput type="text" placeholder="Offer title" formControlName="createOfferTitleCtrl" required>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <textarea matInput [(ngModel)]="offer.description" placeholder="Description" formControlName="createOfferDescriptionCtrl"></textarea>
+    </mat-form-field>
+    
+    <br> 
+    
+    <mat-form-field>
+        <mat-label>Domain</mat-label>
+        <mat-select name="offerDomain" [(ngModel)]="offerDomain" formControlName="createOfferDomainCtrl">
+          <mat-option *ngFor="let domain of domainList" [value]="domain">{{domain}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <br>
+  
+    <div class="example-button-row">
+      <button type="submit" mat-raised-button>Save</button>
+    </div>
+
+   </form>
+  </div>
+</mat-tab> 
+
+
+<mat-tab label="Applications">
+
+  <div style="padding: 10px;" class="mat-elevation-z1 show-articles-div">
+
+    <div fxLayout fxLayoutAlign="center center">
+      <mat-form-field class="filterDataTable" fxFlex="40%">
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div> 
+
+  <br/>
+  <table style="width: 100%;" mat-table [dataSource]="offerApplicationDataSource" class="mat-elevation-z1">
+   
+    <ng-container matColumnDef="id" style="display: none;">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let application"> {{application.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="apply-date">
+      <th mat-header-cell *matHeaderCellDef> Apply date</th>
+      <td style="cursor: pointer;" mat-cell *matCellDef="let application"> {{application.applicationDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="candidate-name">
+      <th mat-header-cell *matHeaderCellDef> Candidate name </th>
+      <td style="cursor: pointer;" mat-cell *matCellDef="let application"> {{application.userDto.lastName}} {{application.userDto.firstName}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td style="cursor: pointer;" mat-cell *matCellDef="let application"> {{application.userDto.email}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="phone-number">
+      <th mat-header-cell *matHeaderCellDef> Phone number </th>
+      <td style="cursor: pointer;" mat-cell *matCellDef="let application"> {{application.userDto.phoneNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="attached-files">
+        <th mat-header-cell *matHeaderCellDef>Attached files</th>
+        <td style="cursor: pointer;" mat-cell *matCellDef="let application"> {{application.attachedFiles}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let application">
+        <mat-cell style="padding-left: 0px;">
+          {{application.status}}
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button [disabled] = "application.status == 'Interview'" (click)="callForInterview(application)" mat-menu-item>
+              <mat-icon>ring_volume</mat-icon>
+              <span>Interview</span>
+            </button>
+            <button [disabled] = "application.status == 'Refused' || application.status == 'Interview'" (click)="applicationResfuse(application)" mat-menu-item>
+              <mat-icon>clear</mat-icon>
+              <span>Refuse</span>
+            </button>
+            <button [disabled] = "application.status == 'Accepted' || application.status == 'Interview'" (click)="applicationAccept(application)" mat-menu-item>
+             <mat-icon>done</mat-icon>
+              <span>Accept</span>
+            </button>
+          </mat-menu>
+        </mat-cell>
+        </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td style="cursor: pointer;" mat-cell *matCellDef="let application">
+        
+    
+        <button (click)="deleteApplication(application)" mat-icon-button>       
+          <mat-icon>delete</mat-icon>
+        </button> 
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedApplicationColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedApplicationColumns;"></tr>
+  
+  </table>
+
+    
+  <mat-card *ngIf="isApplicationTabsLoading" style="display: flex;justify-content: center; align-items: center"> 
+    <mat-progress-spinner diameter="20"  color="primary" mode="indeterminate" value="100"></mat-progress-spinner>
+  </mat-card>
+    
+    <mat-paginator [length]="100" [pageSize]="defaultRecords" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+
+    </div>
+</mat-tab>
+
+
+</mat-tab-group>
+</div>
+
+ 
+ 

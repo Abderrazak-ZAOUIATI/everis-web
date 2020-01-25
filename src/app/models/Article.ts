@@ -6,4 +6,4 @@ export class Article {
 	publicationDate:string;
     status:string;
     user_id:number;
-}
+} 

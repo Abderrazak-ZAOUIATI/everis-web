@@ -1,0 +1,15 @@
+.show-offers{
+
+    width: 100%;
+    
+      }
+
+       
+  .filterDataTable{
+    float: right;
+    margin-right: 10px;
+  }
+
+  th.mat-header-cell {
+    font-weight: 800;
+}

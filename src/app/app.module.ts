@@ -28,6 +28,8 @@ import { ArticleComponent } from './components/article/article.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
+import { OffersComponent } from './components/offers/offers.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     ConfirmAccountComponent,
     LogoutComponent,
     SignupComponent,
-    ArticleComponent
+    ArticleComponent,
+    OffersComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatFormFieldModule,
     MatCardModule,
     MatTabsModule,
+    MatSelectModule,
     RouterModule.forRoot([{
       path: '',
       component: HomeComponent
